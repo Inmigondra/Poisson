@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamereScriptV1 : MonoBehaviour {
+public class CameraScriptV1 : MonoBehaviour {
 	public enum RotationAxes
 	{
 		MouseXAndY = 0,
