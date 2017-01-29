@@ -7,6 +7,7 @@ public class CameraScriptV2 : MonoBehaviour {
 	public GameObject targetOrbit;
 	public GameObject cameraMain;
 	CameraCollider cC;
+	public bool isCamera;
 	// Use this for initialization
 	void Start () {
 		cC = cameraMain.GetComponent<CameraCollider> ();
@@ -17,17 +18,18 @@ public class CameraScriptV2 : MonoBehaviour {
 		float rotationX = Input.GetAxis ("Mouse X") * sensitivity;
 		float rotationY = Input.GetAxis ("Mouse Y") * sensitivity;
 
-
-		transform.RotateAround (targetOrbit.transform.position, Vector3.up, rotationX);
-
-		if (cC.touch == true) {
-			if (rotationY < 0) {
+		if (isCamera == true) {
+			if (cC.touch == true) {
+				if (rotationY < 0) {
+					transform.RotateAround (targetOrbit.transform.position, Vector3.left, rotationY);
+				}
+			} else {
 				transform.RotateAround (targetOrbit.transform.position, Vector3.left, rotationY);
-			}
-		} else {
-			transform.RotateAround (targetOrbit.transform.position, Vector3.left, rotationY);
-		}//s'assurer que la caméra ne passe pas au travers d'un mur
+			}//s'assurer que la caméra ne passe pas au travers d'un mur
 
-
+			//transform.localEulerAngles = new Vector3 (0, 0, 0);
+		}else{
+			transform.RotateAround (targetOrbit.transform.position, Vector3.up, rotationX);
+		}
 	}
 }
