@@ -46,10 +46,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\CameraCollider.cs" />
+     <Compile Include="Assets\Script\AvatarBehavior.cs" />
      <Compile Include="Assets\Script\CameraLookAt.cs" />
-     <Compile Include="Assets\Script\CameraScriptV1.cs" />
-     <Compile Include="Assets\Script\CameraScriptV2.cs" />
+     <Compile Include="Assets\Script\CameraScript.cs" />
+     <Compile Include="Assets\Script\Deplacement.cs" />
+     <Compile Include="Assets\Script\EnnemiBehavior.cs" />
+     <Compile Include="Assets\Script\RessourceBehavior.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

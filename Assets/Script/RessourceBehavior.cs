@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraCollider : MonoBehaviour {
-	public bool touch; 
+public class RessourceBehavior : MonoBehaviour {
+
 	// Use this for initialization
 	void Start () {
 		
 	}
 	
 	// Update is called once per frame
-	void OnTriggerEnter (){
-		touch = true;
+	void Update () {
+		
 	}
-	void OnTriggerExit (){
-		touch = false;
+	void OnCollisionEnter (Collision col){
+		if (col.gameObject.tag == "Player") {
+			Destroy (gameObject);
+		}
 	}
-
 }
