@@ -29,7 +29,7 @@ public class AvatarBehavior : MonoBehaviour {
 		if (stamina > maxStamina) {
 			stamina = maxStamina;
 		}
-		staminaText.text = stamina.ToString ();
+		staminaText.text = Mathf.FloorToInt (stamina).ToString ();
 	}
 	void OnCollisionEnter (Collision col){
 		if (col.gameObject.tag == "Ressource") {
