@@ -51,6 +51,7 @@
      <Compile Include="Assets\Script\CameraScript.cs" />
      <Compile Include="Assets\Script\Deplacement.cs" />
      <Compile Include="Assets\Script\EnnemiBehavior.cs" />
+     <Compile Include="Assets\Script\EnnemiBehaviorV2.cs" />
      <Compile Include="Assets\Script\RessourceBehavior.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
