@@ -1,12 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Deplacement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\RessourceBehavior.cs">
     <Files>
-      <File FileName="Assets\Script\Deplacement.cs" Line="4" Column="1" />
-      <File FileName="Assets\Script\AvatarBehavior.cs" Line="30" Column="38" />
-      <File FileName="Assets\Script\RessourceBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\EnnemiBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\EnnemiBehaviorV2.cs" Line="81" Column="49" />
+      <File FileName="Assets\Script\Deplacement.cs" Line="35" Column="62" />
+      <File FileName="Assets\Script\AvatarBehavior.cs" Line="45" Column="24" />
+      <File FileName="Assets\Script\RessourceBehavior.cs" Line="36" Column="3" />
+      <File FileName="Assets\Script\EnnemiBehaviorV2.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

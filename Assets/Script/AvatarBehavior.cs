@@ -9,14 +9,15 @@ public class AvatarBehavior : MonoBehaviour {
 	public float maxStamina;
 	public float decrementStamina;
 	public float incrementStamina;
+	public float staminaValue;
 	Scene scene;
-	public enum StateVisible
+	/*public enum StateVisible
 	{
 		notVisible,
 		slightlyVisible,
 		visible
 	}
-	public StateVisible state;
+	public StateVisible state;*/
 
 	public Text staminaText;
 	// Use this for initialization
@@ -26,6 +27,7 @@ public class AvatarBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		staminaValue = stamina / maxStamina;
 		if (stamina <= 0) {
 			SceneManager.LoadScene (scene.name);
 		}
@@ -38,6 +40,9 @@ public class AvatarBehavior : MonoBehaviour {
 	void OnCollisionEnter (Collision col){
 		if (col.gameObject.tag == "Ressource") {
 			stamina += incrementStamina;
+		}
+		if (col.gameObject.tag == "Ennemi") {
+			stamina -= decrementStamina;
 		}
 	}
 }

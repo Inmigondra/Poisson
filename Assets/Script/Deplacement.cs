@@ -6,16 +6,21 @@ using UnityEngine;
 public class Deplacement : MonoBehaviour {
 	
 	public float speed; //vitesse de déplacement
-	Rigidbody rb;
+	Rigidbody rB;
 	bool isDashing;
+
+	AvatarBehavior aB;
+
+
 	void Start () {
-		rb = GetComponent<Rigidbody> ();
+		rB = GetComponent<Rigidbody> ();
+		aB = GetComponent <AvatarBehavior> ();
 	}
 	void Update () {
 
 		// Gestion déplacement avatar, se sert de la postion relative de l'avatar
-		float speedX = Input.GetAxis ("Horizontal") * speed ;
-		float speedY = Input.GetAxis ("Vertical") * speed ;
+		float speedX = Input.GetAxis ("Horizontal") * (speed * aB.staminaValue + 1f);
+		float speedY = Input.GetAxis ("Vertical") * (speed * aB.staminaValue + 1f) ;
 		if (Input.GetAxis ("Horizontal") != 0 && isDashing == false) {
 			transform.Translate ( speedX * Time.deltaTime,0, 0);
 		}
@@ -25,16 +30,17 @@ public class Deplacement : MonoBehaviour {
 		//
 		if (Input.GetMouseButtonDown (0)||Input.GetButtonDown ("Dash")){
 			Invoke ("StopVelocity", 0.65f);
-			rb.AddForce (transform.up * 100f );
-			rb.AddForce (transform.forward * 1500f);
+			rB.AddForce (transform.up * 100f );
+			//rB.AddForce (new Vector3(speedX, 0f, speedY) * 1500f);
+			rB.AddForce (transform.forward * (1500f * aB.staminaValue));
 			isDashing = true;
 			//
 		}
 
 	}
 	void StopVelocity () {
-		rb.velocity = Vector3.zero;
-		rb.angularVelocity = Vector3.zero;
+		rB.velocity = Vector3.zero;
+		rB.angularVelocity = Vector3.zero;
 		isDashing = false;
 	}
 }
