@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Deplacement : MonoBehaviour {
 	
 	public float speed; //vitesse de déplacement

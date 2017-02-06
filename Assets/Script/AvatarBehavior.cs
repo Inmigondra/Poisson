@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AvatarBehavior : MonoBehaviour {
 	public float stamina;
 	public float maxStamina;
 	public float decrementStamina;
 	public float incrementStamina;
-
+	Scene scene;
 	public enum StateVisible
 	{
 		notVisible,
@@ -20,11 +21,14 @@ public class AvatarBehavior : MonoBehaviour {
 	public Text staminaText;
 	// Use this for initialization
 	void Start () {
-		
+		scene = SceneManager.GetActiveScene ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (stamina <= 0) {
+			SceneManager.LoadScene (scene.name);
+		}
 		stamina -= decrementStamina * Time.deltaTime;
 		if (stamina > maxStamina) {
 			stamina = maxStamina;
