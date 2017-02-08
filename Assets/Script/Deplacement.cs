@@ -19,8 +19,8 @@ public class Deplacement : MonoBehaviour {
 	void Update () {
 
 		// Gestion déplacement avatar, se sert de la postion relative de l'avatar
-		float speedX = Input.GetAxis ("Horizontal") * (speed * aB.staminaValue + 1f);
-		float speedY = Input.GetAxis ("Vertical") * (speed * aB.staminaValue + 1f) ;
+		float speedX = Input.GetAxis ("Horizontal") * (speed +( speed * aB.staminaValue));
+		float speedY = Input.GetAxis ("Vertical") * (speed +( speed * aB.staminaValue)) ;
 		if (Input.GetAxis ("Horizontal") != 0 && isDashing == false) {
 			transform.Translate ( speedX * Time.deltaTime,0, 0);
 		}
@@ -28,14 +28,14 @@ public class Deplacement : MonoBehaviour {
 			transform.Translate (0,0,  speedY * Time.deltaTime);
 		}
 		//
-		if (Input.GetMouseButtonDown (0)||Input.GetButtonDown ("Dash")){
+		/*if (Input.GetMouseButtonDown (0)||Input.GetButtonDown ("Dash")){
 			Invoke ("StopVelocity", 0.65f);
 			rB.AddForce (transform.up * 100f );
 			//rB.AddForce (new Vector3(speedX, 0f, speedY) * 1500f);
-			rB.AddForce (transform.forward * (1500f * aB.staminaValue));
+			rB.AddForce (transform.forward * (1500f  aB.staminaValue));
 			isDashing = true;
-			//
-		}
+
+		}*/
 
 	}
 	void StopVelocity () {

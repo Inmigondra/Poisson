@@ -10,6 +10,8 @@ public class AvatarBehavior : MonoBehaviour {
 	public float decrementStamina;
 	public float incrementStamina;
 	public float staminaValue;
+	float timerStamina;
+	public float timerStaminaMax;
 	Scene scene;
 	/*public enum StateVisible
 	{
@@ -27,11 +29,16 @@ public class AvatarBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		timerStamina += 1 * Time.deltaTime;
+		if (timerStamina >= timerStaminaMax) {
+			stamina -= decrementStamina;
+			timerStamina = 0;
+		}
 		staminaValue = stamina / maxStamina;
 		if (stamina <= 0) {
 			SceneManager.LoadScene (scene.name);
 		}
-		stamina -= decrementStamina * Time.deltaTime;
+		/*stamina -= decrementStamina * Time.deltaTime;*/
 		if (stamina > maxStamina) {
 			stamina = maxStamina;
 		}
@@ -40,9 +47,15 @@ public class AvatarBehavior : MonoBehaviour {
 	void OnCollisionEnter (Collision col){
 		if (col.gameObject.tag == "Ressource") {
 			stamina += incrementStamina;
+			timerStamina = 0;
 		}
 		if (col.gameObject.tag == "Ennemi") {
-			stamina -= decrementStamina;
+			stamina = 0;
+		}
+	}
+	void OnTriggerEnter (Collider col){
+		if (col.gameObject.tag == "Signal") {
+			print ("suce mon chèvre"); 
 		}
 	}
 }
