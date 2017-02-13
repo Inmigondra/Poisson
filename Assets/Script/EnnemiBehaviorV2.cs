@@ -44,10 +44,16 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 		result = Vector3.zero;
 		return false;
 	}
+
 	/// <summary>
 	/// Start this instance.
 	/// </summary>
+
+	void Awake () {
+		player = GameObject.Find ("player-3rd (1)");
+	}
 	void Start () {
+		
 		aB = player.GetComponent<AvatarBehavior> ();
 		agent = GetComponent <NavMeshAgent> ();
 		searchingNewPoint = true;
@@ -58,7 +64,7 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 		distancePlayer = Vector3.Distance (player.transform.position, transform.position);// Connait en temps réel la distance entre l'entité et le joueur
 		//Debug.Log (distancePlayer); 
 		agent.SetDestination (destination);
-		rangeDetected = baseRangeDetection + (aB.stamina/4f); // Modifie la range de détection en fonction de la stamina
+		rangeDetected = baseRangeDetection + (aB.stamina); // Modifie la range de détection en fonction de la stamina
 		switch (state) {
 		case States.playerUndetected:
 			if (distancePlayer <= rangeDetected /*&& seePlayer == false*/) { // Joueur à distance de détection
@@ -79,9 +85,9 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 			//transform.position = Vector3.MoveTowards (transform.position, ressourceDetected, 0.01f);
 			agent.SetDestination (ressourceDetected);
 			if (timerHear >= timerHearMax) {
-				state = States.playerUndetected;
 				searchingNewPoint = true;
 				timerHear = 0;
+				state = States.playerUndetected;
 			}if (distancePlayer <= rangeDetected /*&& seePlayer == false*/) { // Joueur à distance de détection
 				state = States.playerDetected;
 			}

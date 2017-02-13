@@ -12,8 +12,10 @@ public class RessourceBehavior : MonoBehaviour {
 	public float maxTimer;
 	delegate void ContactPlayer ();
 	ContactPlayer cP;
+	public GameObject hostiles;
 	// Use this for initialization
 	void Start () {
+		timer = maxTimer;
 		parentComponent = transform.parent.gameObject;
 		cP += CreateSignal;
 		cP += DestroyRessource;
@@ -21,6 +23,12 @@ public class RessourceBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		timer -= Time.deltaTime;
+		Debug.Log (timer);
+		if (timer <= 0) {
+			CreateHostile ();
+			DestroyRessource ();
+		}
 		/*distance = Vector3.Distance (transform.position, player.transform.position);
 		if (distance <= 5f) {
 			Vector3 dirRunaway = transform.position - player.transform.position;
@@ -49,7 +57,10 @@ public class RessourceBehavior : MonoBehaviour {
 	}
 
 
-
+	void CreateHostile() {
+		GameObject ho = (GameObject)Instantiate (hostiles);
+		ho.transform.position = transform.position;
+	}
 
 	void CreateSignal () {
 		GameObject signal = (GameObject)Instantiate (signalTrigger);

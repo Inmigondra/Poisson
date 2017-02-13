@@ -38,7 +38,7 @@ public class AvatarBehavior : MonoBehaviour {
 		if (stamina <= 0) {
 			SceneManager.LoadScene (scene.name);
 		}
-		/*stamina -= decrementStamina * Time.deltaTime;*/
+		//stamina -= decrementStamina * Time.deltaTime;
 		if (stamina > maxStamina) {
 			stamina = maxStamina;
 		}
