@@ -24,7 +24,7 @@ public class RessourceBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timer -= Time.deltaTime;
-		Debug.Log (timer);
+		//Debug.Log (timer);
 		if (timer <= 0) {
 			CreateHostile ();
 			DestroyRessource ();

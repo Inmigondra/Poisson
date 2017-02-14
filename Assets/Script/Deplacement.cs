@@ -17,10 +17,9 @@ public class Deplacement : MonoBehaviour {
 		aB = GetComponent <AvatarBehavior> ();
 	}
 	void Update () {
-
 		// Gestion déplacement avatar, se sert de la postion relative de l'avatar
-		float speedX = Input.GetAxis ("Horizontal") * (speed +( speed * aB.staminaValue));
-		float speedY = Input.GetAxis ("Vertical") * (speed +( speed * aB.staminaValue)) ;
+		float speedX = Input.GetAxis ("Horizontal") * (speed +(aB.stamina/3f)); // a ajuster (sans doute plus de vitesse pour vraiment marqué (et rewardé)) speed+(speed*aB.staminaValue)
+		float speedY = Input.GetAxis ("Vertical") * (speed +(aB.stamina/3f));
 		if (Input.GetAxis ("Horizontal") != 0 && isDashing == false) {
 			transform.Translate ( speedX * Time.deltaTime,0, 0);
 		}

@@ -35,9 +35,9 @@ public class AvatarBehavior : MonoBehaviour {
 			timerStamina = 0;
 		}
 		staminaValue = stamina / maxStamina;
-		if (stamina <= 0) {
+		/*if (stamina <= 0) {
 			SceneManager.LoadScene (scene.name);
-		}
+		}*/
 		//stamina -= decrementStamina * Time.deltaTime;
 		if (stamina > maxStamina) {
 			stamina = maxStamina;
@@ -55,7 +55,7 @@ public class AvatarBehavior : MonoBehaviour {
 	}
 	void OnTriggerEnter (Collider col){
 		if (col.gameObject.tag == "Signal") {
-			print ("suce mon chèvre"); 
+			//print ("suce mon chèvre"); 
 		}
 	}
 }

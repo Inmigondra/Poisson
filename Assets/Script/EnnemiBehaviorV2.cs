@@ -52,6 +52,7 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 	void Awake () {
 		player = GameObject.Find ("player-3rd (1)");
 	}
+
 	void Start () {
 		
 		aB = player.GetComponent<AvatarBehavior> ();
@@ -84,11 +85,14 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 		case States.hearRessource:
 			//transform.position = Vector3.MoveTowards (transform.position, ressourceDetected, 0.01f);
 			agent.SetDestination (ressourceDetected);
-			if (timerHear >= timerHearMax) {
+			timerHear += Time.deltaTime;
+			Debug.Log (timerHear);
+			if (timerHear >= timerHearMax) { //c'est là que ça merde //transform.position == ressourceDetected
 				searchingNewPoint = true;
 				timerHear = 0;
 				state = States.playerUndetected;
-			}if (distancePlayer <= rangeDetected /*&& seePlayer == false*/) { // Joueur à distance de détection
+			}
+			if (distancePlayer <= rangeDetected /*&& seePlayer == false*/) { // Joueur à distance de détection
 				state = States.playerDetected;
 			}
 			break;
