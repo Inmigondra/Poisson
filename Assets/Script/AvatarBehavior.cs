@@ -33,6 +33,9 @@ public class AvatarBehavior : MonoBehaviour {
 		if (timerStamina >= timerStaminaMax) {
 			stamina -= decrementStamina;
 			timerStamina = 0;
+			if (stamina <= 0) {
+				stamina = 0;
+			}
 		}
 		staminaValue = stamina / maxStamina;
 		/*if (stamina <= 0) {
