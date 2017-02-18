@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SignalBehavior : MonoBehaviour {
 	float timer;
-	public float timerMax; 
+	public float timerMax;
+	public int type;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,5 +16,9 @@ public class SignalBehavior : MonoBehaviour {
 		timer += 1 * Time.deltaTime;
 		if (timer >= timerMax)
 			Destroy (gameObject); 
+	}
+
+	public int getTypeSignal(){
+		return type;
 	}
 }

@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnnemiBehaviorV2 : MonoBehaviour {
 
+	public int type;
+
 	public enum States
 	{
 		playerUndetected, // Player non vu et pas dans la zone de repérage
@@ -31,6 +33,7 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 	Vector3 ressourceDetected; // Position de la dernière ressource detecté 
 	bool searchingNewPoint; // L'entité cherche une nouvelle destination
 	bool seePlayer; // L'avatar est dans le champs de vision
+	public SignalBehavior sigBeh;
 	/// <summary>
 	/// Randoms the point.
 	/// Permet de choisir un point aléatoire autour de l'entité et retourné si elle existe ou non
@@ -65,7 +68,7 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 		distancePlayer = Vector3.Distance (player.transform.position, transform.position);// Connait en temps réel la distance entre l'entité et le joueur
 		//Debug.Log (distancePlayer); 
 		agent.SetDestination (destination);
-		rangeDetected = baseRangeDetection + (aB.stamina); // Modifie la range de détection en fonction de la stamina
+		rangeDetected = baseRangeDetection + (aB.stamina); // Modifie la range de détection en fonction de la stamina //test types
 		switch (state) {
 		case States.playerUndetected:
 			if (distancePlayer <= rangeDetected /*&& seePlayer == false*/) { // Joueur à distance de détection
@@ -171,10 +174,13 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 			lastpt = newPt;
 		}
 	}
+
 	void OnTriggerEnter (Collider col){
-		if (col.gameObject.tag == "Signal") {
-			state = States.hearRessource;
-			ressourceDetected = col.gameObject.transform.position;
+		if (col.GetComponent<SignalBehavior>()) {
+			if (type == col.GetComponent<SignalBehavior> ().getTypeSignal ()) { //SignalBehavior.getTypeSignal(signal)){
+				state = States.hearRessource;
+				ressourceDetected = col.gameObject.transform.position;
+			}
 		}
 	}
 }
