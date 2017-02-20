@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RessourceBehavior : MonoBehaviour {
+	public int type;
 	public GameObject player;
 	public GameObject parentComponent;
 	public GameObject signalTrigger; // prefab de trigger, contient seulement un trigger représentant le signal
@@ -62,11 +63,16 @@ public class RessourceBehavior : MonoBehaviour {
 		ho.transform.position = transform.position;
 	}
 
-	void CreateSignal () {
+	void CreateSignal () {													//ici pour donner son type a la ressource spawné
 		GameObject signal = (GameObject)Instantiate (signalTrigger);
+		signalTrigger.GetComponent<SignalBehavior> ().setTypeSignal (this.type);
 		signal.transform.position = transform.position;
 	}
 	void DestroyRessource () {
 		Destroy (gameObject);
+	}
+
+	public int getTypeRessource(){
+		return this.type;
 	}
 }

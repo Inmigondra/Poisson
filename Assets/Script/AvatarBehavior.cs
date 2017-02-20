@@ -5,8 +5,12 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class AvatarBehavior : MonoBehaviour {
+
+	public float stamina0;
+	public float stamina1;
 	public float stamina;
 	public float maxStamina;
+
 	public float decrementStamina;
 	public float incrementStamina;
 	public float staminaValue;
@@ -48,16 +52,23 @@ public class AvatarBehavior : MonoBehaviour {
 		staminaText.text = Mathf.FloorToInt (stamina).ToString ();
 	}
 	void OnCollisionEnter (Collision col){
-		if (col.gameObject.tag == "Ressource") {
-			stamina += incrementStamina;
+		if (col.gameObject.GetComponent<RessourceBehavior>()) {
+			if (col.gameObject.GetComponent<RessourceBehavior> ().getTypeRessource() == 0){
+				stamina0 += incrementStamina;
+			}
+			if (col.gameObject.GetComponent<RessourceBehavior> ().getTypeRessource() == 1){
+				stamina1 += incrementStamina;
+			}
+			//Debug.Log (col.gameObject.GetComponent<RessourceBehavior> ().getTypeRessource ());
+			stamina = stamina0 + stamina1;
 			timerStamina = 0;
 		}
-		if (col.gameObject.tag == "Ennemi") {
+		if (col.gameObject.GetComponent<EnnemiBehaviorV2>()) {
 			stamina = 0;
 		}
 	}
 	void OnTriggerEnter (Collider col){
-		if (col.gameObject.tag == "Signal") {
+		if (col.gameObject.GetComponent<SignalBehavior>()) {
 			//print ("suce mon chèvre"); 
 		}
 	}

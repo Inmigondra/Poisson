@@ -68,7 +68,13 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 		distancePlayer = Vector3.Distance (player.transform.position, transform.position);// Connait en temps réel la distance entre l'entité et le joueur
 		//Debug.Log (distancePlayer); 
 		agent.SetDestination (destination);
-		rangeDetected = baseRangeDetection + (aB.stamina); // Modifie la range de détection en fonction de la stamina //test types
+		if (this.type == 0){
+			rangeDetected = baseRangeDetection + (aB.stamina0);
+		}
+		if (this.type == 1){
+			rangeDetected = baseRangeDetection + (aB.stamina1);
+		}
+		//rangeDetected = baseRangeDetection + (aB.stamina); // Modifie la range de détection en fonction de la stamina //test types !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		switch (state) {
 		case States.playerUndetected:
 			if (distancePlayer <= rangeDetected /*&& seePlayer == false*/) { // Joueur à distance de détection
@@ -177,7 +183,7 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 
 	void OnTriggerEnter (Collider col){
 		if (col.GetComponent<SignalBehavior>()) {
-			if (type == col.GetComponent<SignalBehavior> ().getTypeSignal ()) { //SignalBehavior.getTypeSignal(signal)){
+			if (type == col.GetComponent<SignalBehavior>().getTypeSignal ()) { //SignalBehavior.getTypeSignal(signal)){
 				state = States.hearRessource;
 				ressourceDetected = col.gameObject.transform.position;
 			}

@@ -6,6 +6,7 @@ public class SignalBehavior : MonoBehaviour {
 	float timer;
 	public float timerMax;
 	public int type;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,5 +21,9 @@ public class SignalBehavior : MonoBehaviour {
 
 	public int getTypeSignal(){
 		return type;
+	}
+
+	public void setTypeSignal(int i){
+		this.type = i;
 	}
 }
