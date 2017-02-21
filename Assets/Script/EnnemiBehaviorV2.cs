@@ -33,7 +33,7 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 	Vector3 ressourceDetected; // Position de la dernière ressource detecté 
 	bool searchingNewPoint; // L'entité cherche une nouvelle destination
 	bool seePlayer; // L'avatar est dans le champs de vision
-	public SignalBehavior sigBeh;
+	private SignalBehavior sigBeh;
 	/// <summary>
 	/// Randoms the point.
 	/// Permet de choisir un point aléatoire autour de l'entité et retourné si elle existe ou non
@@ -68,13 +68,17 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 		distancePlayer = Vector3.Distance (player.transform.position, transform.position);// Connait en temps réel la distance entre l'entité et le joueur
 		//Debug.Log (distancePlayer); 
 		agent.SetDestination (destination);
+
+		//type ressource influence typer hostile -> a modifier si on veux un truc propre par la suite
 		if (this.type == 0){
 			rangeDetected = baseRangeDetection + (aB.stamina0);
 		}
 		if (this.type == 1){
 			rangeDetected = baseRangeDetection + (aB.stamina1);
 		}
-		//rangeDetected = baseRangeDetection + (aB.stamina); // Modifie la range de détection en fonction de la stamina //test types !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+		//rangeDetected = baseRangeDetection + (aB.stamina); // Modifie la range de détection en fonction de la stamina
 		switch (state) {
 		case States.playerUndetected:
 			if (distancePlayer <= rangeDetected /*&& seePlayer == false*/) { // Joueur à distance de détection
@@ -95,7 +99,7 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 			//transform.position = Vector3.MoveTowards (transform.position, ressourceDetected, 0.01f);
 			agent.SetDestination (ressourceDetected);
 			timerHear += Time.deltaTime;
-			Debug.Log (timerHear);
+			//Debug.Log (timerHear);
 			if (timerHear >= timerHearMax) { //c'est là que ça merde //transform.position == ressourceDetected
 				searchingNewPoint = true;
 				timerHear = 0;
@@ -188,5 +192,9 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 				ressourceDetected = col.gameObject.transform.position;
 			}
 		}
+	}
+
+	public void setTypeHostile (int i){
+		this.type = i;
 	}
 }

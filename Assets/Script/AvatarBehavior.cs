@@ -64,7 +64,8 @@ public class AvatarBehavior : MonoBehaviour {
 			timerStamina = 0;
 		}
 		if (col.gameObject.GetComponent<EnnemiBehaviorV2>()) {
-			stamina = 0;
+			stamina0 = 0;
+			stamina1 = 1;
 		}
 	}
 	void OnTriggerEnter (Collider col){

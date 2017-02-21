@@ -10,13 +10,13 @@ public class RessourceBehavior : MonoBehaviour {
 	public float distance;
 	public Vector3 newDirection;
 	float timer;
-	public float maxTimer;
+	public float timerToChange;
 	delegate void ContactPlayer ();
 	ContactPlayer cP;
 	public GameObject hostiles;
 	// Use this for initialization
 	void Start () {
-		timer = maxTimer;
+		timer = timerToChange;
 		parentComponent = transform.parent.gameObject;
 		cP += CreateSignal;
 		cP += DestroyRessource;
@@ -51,15 +51,16 @@ public class RessourceBehavior : MonoBehaviour {
 		newDirection = new Vector3 (Random.value * Random.Range (-1,2), 0f, Random.value * Random.Range (-1,2));
 	}
 	void OnCollisionEnter (Collision col){
-		if (col.gameObject.tag == "Player") {
+		if (col.gameObject.GetComponent<AvatarBehavior>()) {
 			//Destroy (gameObject);
 			cP ();
 		}
 	}
 
 
-	void CreateHostile() {
+	void CreateHostile() {													//il faudra aussi assigner des couleurs a chaque type
 		GameObject ho = (GameObject)Instantiate (hostiles);
+		hostiles.GetComponent<EnnemiBehaviorV2>().setTypeHostile (this.type);
 		ho.transform.position = transform.position;
 	}
 
