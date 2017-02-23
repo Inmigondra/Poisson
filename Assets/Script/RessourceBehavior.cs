@@ -13,7 +13,7 @@ public class RessourceBehavior : MonoBehaviour {
 	public float timerToChange;
 	delegate void ContactPlayer ();
 	ContactPlayer cP;
-	public GameObject hostiles;
+	//private GameObject hostiles;
 	// Use this for initialization
 	void Start () {
 		timer = timerToChange;
@@ -59,9 +59,20 @@ public class RessourceBehavior : MonoBehaviour {
 
 
 	void CreateHostile() {													//il faudra aussi assigner des couleurs a chaque type
-		GameObject ho = (GameObject)Instantiate (hostiles);
-		hostiles.GetComponent<EnnemiBehaviorV2>().setTypeHostile (this.type);
-		ho.transform.position = transform.position;
+		if (type == 0){
+			GameObject ho = Instantiate (Resources.Load<GameObject> ("Ennemi"));
+			ho.transform.position = transform.position;
+		}
+		else if (type == 1){
+			GameObject ho = Instantiate (Resources.Load<GameObject> ("Cube"));
+			ho.transform.position = transform.position;
+		}
+
+
+		//GameObject o = Instantiate (Resources.Load<GameObject> ("ChatBase"));
+		/*GameObject ho = (GameObject)Instantiate (hostiles);
+		hostiles.GetComponent<EnnemiBehaviorV2>().setTypeHostile (type);
+		ho.transform.position = transform.position;*/
 	}
 
 	void CreateSignal () {													//ici pour donner son type a la ressource spawné
