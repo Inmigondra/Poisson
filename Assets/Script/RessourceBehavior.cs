@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class RessourceBehavior : MonoBehaviour {
 	public int type;
+	public bool move;
 	public GameObject player;
 	public GameObject parentComponent;
 	public GameObject signalTrigger; // prefab de trigger, contient seulement un trigger représentant le signal
 	public float distance;
 	public Vector3 newDirection;
 	float timer;
+	float timerTest;
 	public float timerToChange;
 	delegate void ContactPlayer ();
 	ContactPlayer cP;
@@ -30,21 +32,23 @@ public class RessourceBehavior : MonoBehaviour {
 			CreateHostile ();
 			DestroyRessource ();
 		}
-		/*distance = Vector3.Distance (transform.position, player.transform.position);
-		if (distance <= 5f) {
-			Vector3 dirRunaway = transform.position - player.transform.position;
-			transform.Translate (new Vector3 (dirRunaway.normalized.x * 2f* Time.deltaTime, 0, dirRunaway.normalized.z * 5f * Time.deltaTime ));
-		} else {
-			transform.localPosition = new Vector3 (Mathf.Clamp (transform.localPosition.x, -10, 10), 0, Mathf.Clamp (transform.localPosition.z, -10, 10));
-			transform.Translate (newDirection * Time.deltaTime * 3f);
-			timer += 1*Time.deltaTime;
-			if (timer <= maxTimer) {
-				transform.Translate (newDirection * Time.deltaTime * 0.5f);
+		if (move) { //là ça merde : timer utile pour change
+			distance = Vector3.Distance (transform.position, player.transform.position);
+			if (distance <= 5f) {
+				Vector3 dirRunaway = transform.position - player.transform.position;
+				transform.Translate (new Vector3 (dirRunaway.normalized.x * 2f* Time.deltaTime, 0, dirRunaway.normalized.z * 5f * Time.deltaTime ));
 			} else {
-				timer = 0f;
-				NewDestination ();
+				transform.localPosition = new Vector3 (Mathf.Clamp (transform.localPosition.x, -10, 10), 0, Mathf.Clamp (transform.localPosition.z, -10, 10));
+				transform.Translate (newDirection * Time.deltaTime * 3f);
+				timerTest += 1*Time.deltaTime;
+				if (timerTest <= 15) { //valeur au pif
+					transform.Translate (newDirection * Time.deltaTime * 0.5f);
+				} else {
+					timerTest = 0f;
+					NewDestination ();
+				}
 			}
-		}*/
+		}
 	}
 
 	void NewDestination () {
