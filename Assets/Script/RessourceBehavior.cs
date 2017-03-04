@@ -12,13 +12,13 @@ public class RessourceBehavior : MonoBehaviour {
 	public Vector3 newDirection;
 	float timer;
 	float timerTest;
-	public float timerToChange;
+	//public float timerToChange;
 	delegate void ContactPlayer ();
 	ContactPlayer cP;
 	//private GameObject hostiles;
 	// Use this for initialization
 	void Start () {
-		timer = timerToChange;
+		timer = Random.Range(90, 750); // =timerToChange
 		parentComponent = transform.parent.gameObject;
 		cP += CreateSignal;
 		cP += DestroyRessource;

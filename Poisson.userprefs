@@ -4,7 +4,7 @@
     <Files>
       <File FileName="Assets\Script\Deplacement.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\AvatarBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\RessourceBehavior.cs" Line="39" Column="39" />
+      <File FileName="Assets\Script\RessourceBehavior.cs" Line="21" Column="51" />
       <File FileName="Assets\Script\EnnemiBehaviorV2.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\SignalBehavior.cs" Line="1" Column="1" />
     </Files>
