@@ -18,6 +18,7 @@ public class RessourceBehavior : MonoBehaviour {
 	//private GameObject hostiles;
 	// Use this for initialization
 	void Start () {
+		player = GameObject.Find ("player-3rd (1)");
 		timer = Random.Range(90, 750); // =timerToChange
 		parentComponent = transform.parent.gameObject;
 		cP += CreateSignal;
@@ -26,14 +27,16 @@ public class RessourceBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		distance = Vector3.Distance (transform.position, player.transform.position);
 		timer -= Time.deltaTime;
 		//Debug.Log (timer);
 		if (timer <= 0) {
 			CreateHostile ();
 			DestroyRessource ();
 		}
-		if (move) { //là ça merde : timer utile pour change
-			distance = Vector3.Distance (transform.position, player.transform.position);
+		if (move) { //là ça merde 
+			Debug.Log (distance);
+
 			if (distance <= 5f) {
 				Vector3 dirRunaway = transform.position - player.transform.position;
 				transform.Translate (new Vector3 (dirRunaway.normalized.x * 2f* Time.deltaTime, 0, dirRunaway.normalized.z * 5f * Time.deltaTime ));

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Multi-hostiles.unity
+- path: Assets/Scenes/Libre.2type.unity
   isLoaded: 1
   isActive: 1
