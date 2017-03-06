@@ -74,6 +74,10 @@ public class RessourceBehavior : MonoBehaviour {
 			GameObject ho = Instantiate (Resources.Load<GameObject> ("Cube"));
 			ho.transform.position = transform.position;
 		}
+		else if (type == 2){
+			GameObject ho = Instantiate (Resources.Load<GameObject> ("Cylindre"));
+			ho.transform.position = transform.position;
+		}
 
 
 		//GameObject o = Instantiate (Resources.Load<GameObject> ("ChatBase"));

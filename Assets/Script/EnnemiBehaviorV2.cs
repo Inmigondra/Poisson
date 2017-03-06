@@ -76,6 +76,9 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 		if (this.type == 1){
 			rangeDetected = baseRangeDetection + (aB.stamina1);
 		}
+		if (this.type == 2){
+			rangeDetected = baseRangeDetection + (aB.stamina2);
+		}
 
 
 		//rangeDetected = baseRangeDetection + (aB.stamina); // Modifie la range de détection en fonction de la stamina

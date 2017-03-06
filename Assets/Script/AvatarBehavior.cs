@@ -8,6 +8,7 @@ public class AvatarBehavior : MonoBehaviour {
 
 	public float stamina0;
 	public float stamina1;
+	public float stamina2;
 	public float stamina;
 	public float maxStamina;
 
@@ -59,13 +60,17 @@ public class AvatarBehavior : MonoBehaviour {
 			if (col.gameObject.GetComponent<RessourceBehavior> ().getTypeRessource() == 1){
 				stamina1 += incrementStamina;
 			}
+			if (col.gameObject.GetComponent<RessourceBehavior> ().getTypeRessource() == 2){
+				stamina2 += incrementStamina;
+			}
 			//Debug.Log (col.gameObject.GetComponent<RessourceBehavior> ().getTypeRessource ());
 			stamina = stamina0 + stamina1;
 			timerStamina = 0;
 		}
 		if (col.gameObject.GetComponent<EnnemiBehaviorV2>()) {
 			stamina0 = 0;
-			stamina1 = 1;
+			stamina1 = 0;
+			stamina2 = 0;
 		}
 	}
 	void OnTriggerEnter (Collider col){
