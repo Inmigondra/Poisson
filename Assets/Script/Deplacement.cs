@@ -18,6 +18,8 @@ public class Deplacement : MonoBehaviour {
 	}
 	void Update () {
 		// Gestion déplacement avatar, se sert de la postion relative de l'avatar
+		
+		/*
 		float speedX = Input.GetAxis ("Horizontal") * (speed +(aB.stamina/3f)); // a ajuster (sans doute plus de vitesse pour vraiment marqué (et rewardé)) speed+(speed*aB.staminaValue)
 		float speedY = Input.GetAxis ("Vertical") * (speed +(aB.stamina/3f));
 		if (Input.GetAxis ("Horizontal") != 0 && isDashing == false) {
@@ -25,7 +27,7 @@ public class Deplacement : MonoBehaviour {
 		}
 		if (Input.GetAxis ("Vertical") != 0 && isDashing == false) {
 			transform.Translate (0,0,  speedY * Time.deltaTime);
-		}
+		}*/
 		//
 		/*if (Input.GetMouseButtonDown (0)||Input.GetButtonDown ("Dash")){
 			Invoke ("StopVelocity", 0.65f);
@@ -37,6 +39,20 @@ public class Deplacement : MonoBehaviour {
 		}*/
 
 	}
+
+	void FixedUpdate() {
+		float speedX = Input.GetAxis ("Horizontal") * (speed +(aB.stamina/3f)); // a ajuster (sans doute plus de vitesse pour vraiment marqué (et rewardé)) speed+(speed*aB.staminaValue)
+		float speedY = Input.GetAxis ("Vertical") * (speed + (aB.stamina / 3f));
+		/*if (Input.GetAxis ("Horizontal") != 0 && isDashing == false) {
+			transform.Translate (speedX, 0, 0);
+		}
+		if (Input.GetAxis ("Vertical") != 0 && isDashing == false) {
+			transform.Translate (0, 0, speedY);
+		}*/
+	//rB.AddForce(new Vector3(speedX,0,speedY));
+	rB.velocity = new Vector3(speedX,rB.velocity.y,speedY); // translate -> passe a travers mus, addf orce yep mais inertie, velocity is the best (a cleaner)
+	}
+
 	void StopVelocity () {
 		rB.velocity = Vector3.zero;
 		rB.angularVelocity = Vector3.zero;
