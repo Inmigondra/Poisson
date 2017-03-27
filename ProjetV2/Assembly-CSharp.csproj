@@ -215,6 +215,9 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -230,11 +233,14 @@
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEngine.Purchasing">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="SabreCSG.Core">
- <HintPath>D:/ICAN/ICAN/2GD (2)/ProjetS2/Poisson/ProjetV2/Assets/SabreCSG/Scripts/SabreCSG.Core.dll</HintPath>
+ <HintPath>D:/ICAN/ICAN/2GD (2)/ProjetS2/Poisson/Poisson/ProjetV2/Assets/SabreCSG/Scripts/SabreCSG.Core.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
