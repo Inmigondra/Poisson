@@ -3,29 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnnemiBehaviorV2 : MonoBehaviour {
-
-	public int type;
+public class EnnemiBehaviorV3 : MonoBehaviour {
+	public GameObject gameManager;
+	GameManager gM;
+	public GameObject player;
+	AvatarBehavior aB;
 
 	public enum States
 	{
 		playerUndetected, // Player non vu et pas dans la zone de repérage
 		playerDetected, // Player non vu et dans la zone de détection
 		hearRessource, // Lorsque le joueur récolte une entité
-		playerSeen // Player vu
+		playerSeen, // Player vu
+		playerInRange // A bonne distance pour déclencher le pattern d'attaque
 	}
-	public States state; // Donne l'état de recherche de l'entité
+	public States state; //Etat actuel de l'entité
 
-	public GameObject player; // Référencie l'avatar
-	AvatarBehavior aB;// Référencie le script AvatarBehavior
-	public float distancePlayer; // Distance entre Entité/Avatar
+	public float distancePlayer; // Distance hostile/avatar
 
-	public float angleVision; // Angle de vision de l'entité
-	public float baseRangeDetection;
-	public float rangeDetected; // Distance à laquelle l'entité detecte le joueur 
-	public float rangeMovement; // Distance max entre 2 déplacements
+	public float angleBase;
+	public float angleVision;// champs de vision
+	public float rangeDetected;//range de détection actuelle
+	public float rangeMovement;//distance max entre 2 déplacements
 	float timerHear;
-	public float timerHearMax;// temps maximum pouvant etre entendu
+	public float timerMaxHear;//temps max durant lequel, l'entité est attirée par l'écho de la ressource
+	public bool asChecked; //dernière position du joueur vérifié
+	public float diviseur; //pour limiter l'augmetation du champs de vision
+
 	NavMeshAgent agent; // Référencie le component navmeshagent de l'entité
 	Vector3 point; // Point dans l'espace, vérifiant si il est disponible
 	Vector3 destination; // Point vers lequel l'entité se déplace
@@ -33,7 +37,6 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 	Vector3 ressourceDetected; // Position de la dernière ressource detecté 
 	bool searchingNewPoint; // L'entité cherche une nouvelle destination
 	bool seePlayer; // L'avatar est dans le champs de vision
-	private SignalBehavior sigBeh;
 	/// <summary>
 	/// Randoms the point.
 	/// Permet de choisir un point aléatoire autour de l'entité et retourné si elle existe ou non
@@ -48,66 +51,52 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 		return false;
 	}
 
-	/// <summary>
-	/// Start this instance.
-	/// </summary>
-
-	void Awake () {
-		player = GameObject.Find ("player-3rd (1)");
-	}
-
+	// Use this for initialization
 	void Start () {
-		
-		aB = player.GetComponent<AvatarBehavior> ();
-		agent = GetComponent <NavMeshAgent> ();
+		StartCoroutine (StartBehavior ());// Lance la coroutine permettant de lancer l'ia
+		asChecked = true;
 		searchingNewPoint = true;
+		destination = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		distancePlayer = Vector3.Distance (player.transform.position, transform.position);// Connait en temps réel la distance entre l'entité et le joueur
-		//Debug.Log (distancePlayer); 
+		distancePlayer = Vector3.Distance (player.transform.position, transform.position);//Connait en temps réel la distance etre l'entité et le joueur
 		agent.SetDestination (destination);
-
-
-
-
-		//rangeDetected = baseRangeDetection + (aB.stamina); // Modifie la range de détection en fonction de la stamina
+		angleVision = angleBase + (aB.stamina / diviseur);
 		switch (state) {
-		case States.playerUndetected:
-			if (distancePlayer <= rangeDetected /*&& seePlayer == false*/) { // Joueur à distance de détection
+		case States.playerUndetected://--
+			if (distancePlayer <= rangeDetected) {
 				state = States.playerDetected;
 			}
 			if (searchingNewPoint == true) {
-				if (randomPoint (transform.position, rangeMovement, out point)) {
+				if (randomPoint (transform.position, rangeMovement, out point )) {
 					searchingNewPoint = false;
 					destination = point;
-					Debug.DrawRay (point, Vector3.up, Color.blue, 50f);
-				} 
+					Debug.DrawRay (point, Vector3.up, Color.magenta, 10f);
+				}
 			}
-			if (agent.remainingDistance <= 1f){
+			if (agent.remainingDistance <= 1f) {
 				searchingNewPoint = true;
 			}
 			break;
-		case States.hearRessource:
-			//transform.position = Vector3.MoveTowards (transform.position, ressourceDetected, 0.01f);
+		case States.hearRessource://--
 			agent.SetDestination (ressourceDetected);
-			timerHear += Time.deltaTime;
-			//Debug.Log (timerHear);
-			if (timerHear >= timerHearMax) { //c'est là que ça merde //transform.position == ressourceDetected
+			timerHear += 1 * Time.deltaTime;
+			if (timerHear >= timerMaxHear) { //c'est là que ça merde //transform.position == ressourceDetected
 				searchingNewPoint = true;
 				timerHear = 0;
 				state = States.playerUndetected;
 			}
-			if (distancePlayer <= rangeDetected /*&& seePlayer == false*/) { // Joueur à distance de détection
+			if (distancePlayer <= rangeDetected) { 
 				state = States.playerDetected;
 			}
 			break;
 		case States.playerDetected:
+			transform.LookAt (player.transform.position);
 			Vector3 direction = player.transform.position - transform.position;
 			float angle = Vector3.Angle (direction, transform.forward);
-			RaycastHit hit; 
-			transform.LookAt (player.transform.position);
+			RaycastHit hit;
 			if (angle <= angleVision) {
 				if (Physics.Raycast (transform.position, direction.normalized, out hit, rangeDetected)) {
 					if (hit.collider.gameObject == player) {
@@ -140,7 +129,7 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 					destination = lastPositionPlayer;
 				}
 			}
-			if (agent.remainingDistance <= 1) {
+			if (agent.remainingDistance <= 1f) {
 				state = States.playerDetected;
 				SetResearch ();
 			}
@@ -148,19 +137,17 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 		}
 	}
 
-	/// <summary>
-	/// Sets the iddle. remet les variables de bases à zero
+
 	void SetResearch () {
 		searchingNewPoint = true;
 	}
 
-
 	/// <summary>
 	/// Raises the draw gizmos event.
 	/// </summary>
-    void OnDrawGizmos() {
+	void OnDrawGizmos() {
 		DrawGizmosCone (transform.position, transform.forward, transform.up, angleVision, rangeDetected); //Champs de vision
-    }
+	}
 	void DrawGizmosCone(Vector3 pos, Vector3 dir, Vector3 up, float angle, float distance) {
 		Vector3 leftVector = Quaternion.AngleAxis(-angle, up) * dir * distance;
 		Gizmos.color = Color.red;
@@ -178,17 +165,18 @@ public class EnnemiBehaviorV2 : MonoBehaviour {
 			lastpt = newPt;
 		}
 	}
-
-	void OnTriggerEnter (Collider col){
-		if (col.GetComponent<SignalBehavior>()) {
-			if (type == col.GetComponent<SignalBehavior>().getTypeSignal ()) { //SignalBehavior.getTypeSignal(signal)){
-				state = States.hearRessource;
-				ressourceDetected = col.gameObject.transform.position;
-			}
-		}
+	/// <summary>
+	/// Starts the behavior.
+	/// </summary>
+	/// <returns>The behavior.</returns>
+	IEnumerator StartBehavior() {
+		gameManager = GameObject.Find ("GameManager");
+		gM = gameManager.GetComponent <GameManager> ();
+		player = gM.spawnedPlayer;
+		aB = player.GetComponent <AvatarBehavior>();
+		agent = GetComponent <NavMeshAgent>();
+		Debug.Log ("worked"); 
+		yield break;
 	}
 
-	public void setTypeHostile (int i){
-		this.type = i;
-	}
 }

@@ -14,7 +14,7 @@ public class AvatarBehavior : MonoBehaviour {
 	public float staminaValue;
 	public float timerStamina;
 	public float timerStaminaMax;
-	public bool immediateDeath = true;
+	public bool immediateDeath = true; //Sers pour le prototypage
 	Text staminaText;
 	GameObject gamemanagerPrefab;
 	GameObject textForStamina;
@@ -52,19 +52,15 @@ public class AvatarBehavior : MonoBehaviour {
 		if (col.gameObject.tag == "Ressource") {
 			stamina += incrementStamina;
 			timerStamina = 0;
-			gM.actualNumberRessources -= 1;
+			gM.actualNumberRessources += 1;
 		}
 		if (col.gameObject.tag == "Ennemi") {
 			if (immediateDeath){
 				gM.GameOver ();
-			}else{
-				if (stamina > 0) {
-					stamina = 0;
-					dP.ContactEnnemi (col.gameObject);
-				} else if (stamina == 0) {
-					gM.GameOver ();
-				}
 			}
+		}
+		if (col.gameObject.tag == "Arrive") {
+			gM.NextLevel ();
 		}
 	}
 	void OnTriggerEnter (Collider col){

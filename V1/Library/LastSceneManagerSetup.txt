@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/LD/Premier jet.unity
+- path: Assets/Scenes/Tests/1nid.1type.unity
   isLoaded: 1
   isActive: 1

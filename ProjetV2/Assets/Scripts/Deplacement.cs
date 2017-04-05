@@ -31,9 +31,4 @@ public class Deplacement : MonoBehaviour {
 		rB.angularVelocity = Vector3.zero;
 		isDashing = false;
 	}
-	public void ContactEnnemi (GameObject ennemi) {
-		Vector3 dir = (transform.position - ennemi.transform.position);
-		rB.AddForce (dir * 1000f);
-		Debug.Log (dir);
-	}
 }

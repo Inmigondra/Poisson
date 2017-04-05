@@ -157,9 +157,9 @@
      <Compile Include="Assets\Scripts\CameraLookAt.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
      <Compile Include="Assets\Scripts\Deplacement.cs" />
-     <Compile Include="Assets\Scripts\EnnemiBehaviorV2.cs" />
+     <Compile Include="Assets\Scripts\EnnemiBehaviorV3.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\RessourceBehavior.cs" />
+     <Compile Include="Assets\Scripts\RessourceBehaviorV2.cs" />
      <Compile Include="Assets\Scripts\SignalBehavior.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\SabreCSG\Shaders\VertexTinted.shader" />
