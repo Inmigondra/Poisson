@@ -4,6 +4,7 @@ Cmd: getPlatforms
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Cmd: compileSnippet
   api=4 type=0 insize=1023 outsize=1874 kw=DIRECTIONAL SHADOWS_SCREEN _EMISSION _METALLICGLOSSMAP pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
 Cmd: compileSnippet
@@ -101,6 +102,8 @@ Cmd: compileSnippet
 Cmd: compileSnippet
   api=4 type=1 insize=949 outsize=3758 kw=DIRECTIONAL _DETAIL_MULX2 _NORMALMAP pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
 =======
+=======
+>>>>>>> parent of f1a646d... Completion
 =======
 >>>>>>> parent of f1a646d... Completion
 =======
@@ -444,6 +447,9 @@ Cmd: compileCompute
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of f1a646d... Completion
+=======
 >>>>>>> parent of f1a646d... Completion
 =======
 >>>>>>> parent of f1a646d... Completion
