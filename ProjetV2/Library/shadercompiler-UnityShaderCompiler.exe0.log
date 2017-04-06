@@ -1,7 +1,10 @@
 Base path: C:/Program Files/Unity/Editor/Data
 Cmd: getPlatforms
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 02284cf... Add des textures et de niveau
 Cmd: preprocess
   insize=3183 outsize=321 ok=1
 Cmd: preprocess
@@ -336,4 +339,7 @@ Cmd: compileSnippet
   api=4 type=1 insize=4429 outsize=2782 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
 Cmd: compileCompute
   api=4 insize=2341 outsize=1365 ok=1
+<<<<<<< HEAD
+>>>>>>> parent of 02284cf... Add des textures et de niveau
+=======
 >>>>>>> parent of 02284cf... Add des textures et de niveau
