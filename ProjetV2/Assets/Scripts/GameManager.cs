@@ -5,19 +5,21 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
 	public int numberRessources; // ressources totale du niveau
-	public int actualNumberRessources; // ressources restante du niveau
+	public int actualNumberRessources; // ressources récupéré
+	public int requiredRessources; // ressources 
+	public int nextLevel;
 	public Transform startingPosition;
 	public GameObject player;
+	public GameObject spawnedPlayer;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		StartGame ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (actualNumberRessources <= 0) {
-			Debug.Log ("go to end level"); 
 		}
 	}
 
@@ -25,8 +27,17 @@ public class GameManager : MonoBehaviour {
 		Scene sceneToLoad = SceneManager.GetActiveScene ();
 		SceneManager.LoadScene (sceneToLoad.name);
 	}
+	public void NextLevel (){
+		if (actualNumberRessources >= requiredRessources) {
+			SceneManager.LoadScene (nextLevel);
+		} else {
+			GameOver ();
+		}
+	}
 	public void StartGame (){
-		Instantiate (player, startingPosition.position, Quaternion.identity);
+		GameObject prefabPlayer = (GameObject)Instantiate (player);
+		prefabPlayer.transform.position = startingPosition.position;
+		spawnedPlayer = prefabPlayer;
 	}
 
 }

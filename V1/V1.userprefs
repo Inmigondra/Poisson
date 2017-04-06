@@ -1,10 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnnemiBehaviorV3.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Deplacement.cs">
     <Files>
-      <File FileName="Assets\Scripts\RessourceBehaviorV2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnnemiBehaviorV3.cs" Line="66" Column="53" />
+      <File FileName="Assets\Script\Deplacement.cs" Line="7" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 public class Deplacement : MonoBehaviour {
-	
+	//test
 	public float speed; //vitesse de déplacement
 	Rigidbody rB;
 	bool isDashing;

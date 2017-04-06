@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scene/Scene_Test_Texture.unity
-  isLoaded: 1
-  isActive: 1
